@@ -3,7 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link rel="manifest" href="manifest.json">
+
     <title>公金レジ締め支援アプリ</title>
+<meta name="apple-mobile-web-app-title" content="レジ締め支援">
+<meta name="application-name" content="レジ締め支援">
+<link rel="apple-touch-icon" href="icon.png">
+
+<link rel="icon" type="image/png" sizes="192x192" href="icon.png">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/lucide-static/0.321.0/lucide.min.css" rel="stylesheet">
     <style>
@@ -353,5 +365,14 @@
 
         init();
     </script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js').then(() => {
+      console.log('Service Worker Registered');
+    });
+  }
+</script>
+
 </body>
 </html>
