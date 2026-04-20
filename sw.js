@@ -8,9 +8,8 @@ self.addEventListener('activate', (event) => {
   console.log('Service Worker activated.');
 });
 
-// fetchイベントの正しい書き方
+// fetchイベントの正しい書き方 (PWAとして認識されるための必須リスナー)
 self.addEventListener('fetch', (event) => {
-  // PWAの条件を満たすために最低限必要
   event.respondWith(fetch(event.request));
 });
 
