@@ -73,36 +73,26 @@
             <div class="bg-white rounded-2xl border border-[#005bac] p-4 text-center shadow-sm relative overflow-hidden">
                 <div class="text-[#005bac] font-bold text-xs mb-1">本日の売上高</div>
                 <div class="text-4xl font-black text-gray-900 mb-2" id="res-sales">¥0</div>
-                <div class="text-[10px] font-bold text-gray-500 bg-gray-100 inline-block px-3 py-1.5 rounded-lg" id="res-calc-formula">
-                    --
-                </div>
+                <div id="res-calc-formula" class="text-[10px] font-bold text-gray-500 bg-gray-100 inline-block px-3 py-1.5 rounded-lg">--</div>
             </div>
 
             <div id="error-container" class="hidden bg-red-50 border-l-4 border-red-500 p-4 rounded-r-xl shadow-sm">
-                <div class="flex items-center gap-2 text-red-700 font-black mb-1">
-                    <i class="lucide-alert-triangle w-5 h-5"></i>
-                    <span>エラー</span>
-                </div>
+                <div class="flex items-center gap-2 text-red-700 font-black mb-1"><i class="lucide-alert-triangle w-5 h-5"></i><span>エラー</span></div>
                 <div id="error-message" class="text-sm font-bold text-red-600"></div>
             </div>
 
             <div id="steps-wrapper" class="hidden space-y-4">
                 <div class="bg-white rounded-2xl border border-gray-200 p-4 shadow-sm">
                     <h2 class="text-gray-900 font-black text-lg mb-4 flex justify-between items-center border-b pb-2">
-                        <span class="flex items-center gap-2">
-                            <i class="lucide-list-checks w-5 h-5 text-[#005bac]"></i> 締め手順
-                        </span>
+                        <span class="flex items-center gap-2"><i class="lucide-list-checks w-5 h-5 text-[#005bac]"></i> 締め手順</span>
                         <button onclick="saveMemo()" id="save-btn" class="text-[10px] bg-[#005bac] text-white px-3 py-1.5 rounded-lg font-bold flex items-center gap-1 active:scale-95">
                             <i class="lucide-cloud-upload w-3 h-3"></i> 結果をメモ保存
                         </button>
                     </h2>
                     <div id="steps-container" class="space-y-4"></div>
                 </div>
-
                 <div class="bg-white rounded-2xl border border-gray-200 p-3 shadow-sm overflow-hidden">
-                    <h3 class="text-xs font-black text-gray-700 mb-3 flex items-center gap-1">
-                        <i class="lucide-table w-4 h-4 text-gray-400"></i> 枚数遷移確認表
-                    </h3>
+                    <h3 class="text-xs font-black text-gray-700 mb-3 flex items-center gap-1"><i class="lucide-table w-4 h-4 text-gray-400"></i> 枚数遷移確認表</h3>
                     <div class="overflow-x-auto rounded-xl border border-gray-200">
                         <table class="w-full text-right text-[11px]">
                             <thead>
@@ -125,10 +115,7 @@
             <div class="bg-white rounded-2xl border border-gray-200 p-4 shadow-sm">
                 <div class="flex items-center gap-2 mb-4">
                     <i class="lucide-settings w-5 h-5 text-gray-400"></i>
-                    <div>
-                        <h2 class="text-gray-900 font-black text-md">残置設定</h2>
-                        <p class="text-gray-500 text-[10px]">翌日の準備金として機内に残す枚数</p>
-                    </div>
+                    <div><h2 class="text-gray-900 font-black text-md">残置設定</h2><p class="text-gray-500 text-[10px]">翌日の準備金として機内に残す枚数</p></div>
                 </div>
                 <div class="grid grid-cols-2 gap-2 mb-4" id="settings-grid"></div>
                 <div class="bg-gray-50 rounded-xl p-3 flex justify-between items-center border border-gray-200">
@@ -139,19 +126,24 @@
             <button onclick="saveSettings()" class="w-full bg-gray-800 text-white py-4 rounded-xl font-black flex justify-center items-center gap-2 shadow-md active:scale-95 transition-transform">
                 <i class="lucide-save w-4 h-4"></i> 設定を保存
             </button>
+            
+            <div class="mt-10 p-3 bg-gray-900 rounded-xl">
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Debug Console</span>
+                    <button onclick="document.getElementById('debug-log').innerText=''" class="text-[10px] text-gray-500 underline">Clear</button>
+                </div>
+                <div id="debug-log" class="text-[9px] font-mono text-emerald-400 break-all leading-tight max-h-32 overflow-y-auto">System ready.</div>
+            </div>
         </div>
     </main>
 
     <div id="memo-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
         <div class="bg-white rounded-3xl w-full max-w-sm overflow-hidden shadow-2xl animate-fade-in">
             <div class="p-4 border-b border-gray-100 flex justify-between items-center">
-                <h3 class="font-black text-gray-800 flex items-center gap-2">
-                    <i class="lucide-history w-5 h-5 text-blue-600"></i> 保存結果
-                </h3>
+                <h3 class="font-black text-gray-800 flex items-center gap-2"><i class="lucide-history w-5 h-5 text-blue-600"></i> 保存結果</h3>
                 <button onclick="closeModal()" class="text-gray-400 p-1"><i class="lucide-x w-6 h-6"></i></button>
             </div>
-            <div id="memo-content" class="p-5 max-h-[70vh] overflow-y-auto space-y-4 text-sm">
-                </div>
+            <div id="memo-content" class="p-5 max-h-[70vh] overflow-y-auto space-y-4 text-sm"></div>
             <div class="p-4 bg-gray-50 border-t border-gray-100">
                 <button onclick="closeModal()" class="w-full bg-gray-900 text-white py-3 rounded-xl font-black">閉じる</button>
             </div>
@@ -161,14 +153,21 @@
     <script>
         const DENOMS = [10000, 5000, 1000, 500, 100, 50, 10];
         const LABELS = { 10000: "1万", 5000: "5千", 1000: "1千", 500: "500", 100: "100", 50: "50", 10: "10" };
+        
+        // 保存場所（バケットIDを衝突しにくいものに変更）
+        const BUCKET_ID = 'regi-memo-v1-alpha88'; 
+        const KVDB_URL = `https://kvdb.io/A8fXm5G2Z7vT5w6N9qR/${BUCKET_ID}`;
 
-        // 匿名エンドポイント設定 (URL自体が鍵になります)
-        const BUCKET_ID = 'e7a3d9f1c2b5a8e0'; // 16文字のランダムID
-        const KVDB_URL = `https://kvdb.io/${BUCKET_ID}/latest_memo`;
+        function log(msg) {
+            const el = document.getElementById('debug-log');
+            el.innerText += `\n> ${msg}`;
+            el.scrollTop = el.scrollHeight;
+            console.log(msg);
+        }
 
         let settings = JSON.parse(localStorage.getItem('regi_final_settings')) || { 10000:0, 5000:3, 1000:16, 500:16, 100:30, 50:20, 10:0 };
         let currentCounts = {};
-        let lastResultData = null; // 保存用データ保持
+        let lastResultData = null;
         DENOMS.forEach(d => currentCounts[d] = 0);
 
         function init() { renderGrids(); updateTotals(); }
@@ -181,11 +180,7 @@
         function createInputHtml(d, type, val) {
             return `<div class="flex items-center border border-gray-200 rounded-xl px-2 py-1.5 bg-gray-50 focus-within:bg-blue-50 focus-within:border-[#005bac] transition-colors">
                 <span class="text-xs font-black text-gray-500 w-8">${LABELS[d]}</span>
-                <input type="number" inputmode="numeric" 
-                    onfocus="this.select()" 
-                    oninput="updateVal(${d}, this.value, '${type}')" 
-                    value="${val || ''}" placeholder="0" 
-                    class="w-full text-right font-black text-gray-900 text-lg focus:outline-none bg-transparent">
+                <input type="number" inputmode="numeric" onfocus="this.select()" oninput="updateVal(${d}, this.value, '${type}')" value="${val || ''}" placeholder="0" class="w-full text-right font-black text-gray-900 text-lg focus:outline-none bg-transparent">
                 <span class="text-[10px] font-bold text-gray-400 ml-1 mt-1">枚</span>
             </div>`;
         }
@@ -216,7 +211,6 @@
             });
             document.getElementById(`content-${tab}`).classList.remove('hidden');
             document.getElementById(`tab-${tab}`).className = "flex-1 py-2 text-sm font-bold rounded-lg transition-all tab-active";
-            window.scrollTo(0, 0);
         }
 
         function saveSettings() {
@@ -224,154 +218,32 @@
             alert("設定を保存しました。");
         }
 
-        function calculate() {
-            document.getElementById('error-container').classList.add('hidden');
-            document.getElementById('steps-wrapper').classList.add('hidden');
-            
-            const curTotal = DENOMS.reduce((s, d) => s + (d * currentCounts[d]), 0);
-            const setTotal = DENOMS.reduce((s, d) => s + (d * settings[d]), 0);
-            const sales = curTotal - setTotal;
-
-            document.getElementById('res-sales').innerText = `¥${sales.toLocaleString()}`;
-            document.getElementById('res-calc-formula').innerText = `現在高 ¥${curTotal.toLocaleString()} － 設定額 ¥${setTotal.toLocaleString()}`;
-
-            if (sales < 0) {
-                showError(`釣銭機内の合計が設定額を下回っています。<br>売上データを確認してください。（不足: ¥${Math.abs(sales).toLocaleString()}）`);
-                return;
-            }
-
-            let baseBorrow = {};
-            let baseOwed = 0;
-            let initialTray = {};
-
-            DENOMS.forEach(d => {
-                const diff = currentCounts[d] - settings[d];
-                if (diff < 0) {
-                    baseBorrow[d] = Math.abs(diff);
-                    baseOwed += Math.abs(diff) * d;
-                    initialTray[d] = 0; 
-                } else {
-                    baseBorrow[d] = 0;
-                    initialTray[d] = diff;
-                }
-            });
-
-            let bestExtra = null;
-            let minExtraVal = Infinity;
-
-            for(let e10k = 0; e10k <= 3; e10k++) {
-                for(let e5k = 0; e5k <= 2; e5k++) {
-                    for(let e1k = 0; e1k <= 15; e1k++) {
-                        let extraVal = e10k*10000 + e5k*5000 + e1k*1000;
-                        if(extraVal >= minExtraVal) continue;
-                        let simOwed = baseOwed + extraVal;
-                        let simTray = {...initialTray};
-                        simTray[10000] += e10k; simTray[5000] += e5k; simTray[1000] += e1k;
-                        let rem = simOwed;
-                        let returnPlan = {};
-                        DENOMS.forEach(d => {
-                            let use = Math.min(simTray[d], Math.floor(rem / d));
-                            if(use > 0) { returnPlan[d] = use; rem -= use * d; }
-                        });
-                        if(rem === 0) {
-                            bestExtra = { 10000: e10k, 5000: e5k, 1000: e1k, returnPlan: returnPlan, extraVal: extraVal };
-                            minExtraVal = extraVal;
-                        }
-                    }
-                }
-            }
-
-            if (!bestExtra) {
-                showError(`排出金種の組み合わせで返却額（¥${baseOwed.toLocaleString()}〜）をピッタリ作れません。<br>レジ内を事前に両替してください。`);
-                return;
-            }
-
-            let finalBorrow = {...baseBorrow};
-            finalBorrow[10000] += bestExtra[10000];
-            finalBorrow[5000] += bestExtra[5000];
-            finalBorrow[1000] += bestExtra[1000];
-            let finalTray = {...initialTray};
-            finalTray[10000] += bestExtra[10000]; finalTray[5000] += bestExtra[5000]; finalTray[1000] += bestExtra[1000];
-            let finalOwed = baseOwed + bestExtra.extraVal;
-
-            // 保存用データの構築
-            lastResultData = {
-                timestamp: new Date().toLocaleString('ja-JP'),
-                borrow: finalBorrow,
-                return: bestExtra.returnPlan,
-                total: finalOwed
-            };
-
-            document.getElementById('steps-wrapper').classList.remove('hidden');
-            renderSteps(finalBorrow, bestExtra.returnPlan, finalOwed);
-            renderTable(finalBorrow, finalTray);
-            switchTab('result');
-        }
-
-        function showError(msg) {
-            document.getElementById('error-container').classList.remove('hidden');
-            document.getElementById('error-message').innerHTML = msg;
-            switchTab('result');
-        }
-
-        function renderSteps(borrows, returns, totalOwed) {
-            const container = document.getElementById('steps-container');
-            container.innerHTML = '';
-            if (totalOwed === 0) {
-                container.innerHTML = `<div class="p-5 text-center bg-green-50 rounded-xl border border-green-200"><div class="text-green-700 font-black text-lg mb-1">金庫等からの補充は不要です</div><p class="text-xs font-bold text-green-600">そのまま「残置回収」を実行してください。</p></div>`;
-                return;
-            }
-            const bItems = DENOMS.filter(d => borrows[d] > 0).map(d => `<div class="flex justify-between items-center bg-white px-3 py-1.5 rounded border border-orange-100 mb-1"><span class="text-orange-800 font-bold">${LABELS[d]}円</span><span class="font-black text-orange-600">${borrows[d]} <span class="text-[10px] font-normal">枚</span></span></div>`).join('');
-            container.innerHTML += stepCard(1, "金庫等から補充", "border-orange-500 bg-orange-50", "text-orange-600", "lucide-wallet", `<div class="mb-2 text-gray-600">不足分と調整のため以下を準備します。</div>${bItems}<div class="text-right text-xs font-black text-orange-800 mt-2">借入合計: ¥${totalOwed.toLocaleString()}</div>`);
-            container.innerHTML += stepCard(2, "レジへ投入 ＆ 残置回収", "border-[#005bac] bg-blue-50", "text-[#005bac]", "lucide-arrow-down-up", `<div class="text-gray-700">準備した現金をすべて<b>「補充」</b>で入れ、その後<b>「残置回収」</b>を実行します。</div>`);
-            const rItems = DENOMS.filter(d => returns[d] > 0).map(d => `<div class="flex justify-between items-center bg-white px-3 py-1.5 rounded border border-emerald-100 mb-1"><span class="text-emerald-800 font-bold">${LABELS[d]}円</span><span class="font-black text-emerald-600">${returns[d]} <span class="text-[10px] font-normal">枚</span></span></div>`).join('');
-            container.innerHTML += stepCard(3, "金庫等へ返却", "border-emerald-500 bg-emerald-50", "text-emerald-600", "lucide-undo-2", `<div class="mb-2 text-gray-600">排出トレイから以下を抜き取り、金庫等へ返します。</div>${rItems}<div class="text-right text-xs font-black text-emerald-800 mt-2">返却合計: ¥${totalOwed.toLocaleString()}</div>`);
-            container.innerHTML += stepCard(4, "業務完了", "border-gray-300 bg-gray-50", "text-gray-500", "lucide-check", `<div class="text-gray-700">残った現金を回収ボックスへ入れます。</div>`);
-        }
-
-        function stepCard(num, title, colors, iconColor, icon, content) {
-            return `<div class="border-l-4 rounded-r-xl p-3 shadow-sm ${colors}">
-                <div class="flex items-center gap-2 mb-2">
-                    <div class="w-6 h-6 rounded bg-white shadow-sm flex justify-center items-center ${iconColor}"><i class="${icon} w-3.5 h-3.5"></i></div>
-                    <div class="text-sm font-black text-gray-900">${num}. ${title}</div>
-                </div>
-                <div class="ml-8 text-xs font-bold leading-relaxed">${content}</div>
-            </div>`;
-        }
-
-        function renderTable(borrows, trayExpelled) {
-            const tbody = document.getElementById('flow-tbody');
-            tbody.innerHTML = '';
-            DENOMS.forEach((d, index) => {
-                const b = borrows[d]; const t = trayExpelled[d]; const result = currentCounts[d] + b - t; const isMatch = result === settings[d];
-                tbody.innerHTML += `<tr class="border-b border-gray-100 ${index % 2 === 0 ? 'bg-white' : 'table-row-even'}"><td class="text-left py-2 px-2 text-gray-600">${LABELS[d]}</td><td class="py-2 px-1 text-gray-800">${currentCounts[d]}</td><td class="py-2 px-1 text-orange-600">${b > 0 ? '+'+b : '0'}</td><td class="py-2 px-1 text-blue-600">${t > 0 ? '-'+t : '0'}</td><td class="py-2 px-2 ${isMatch ? 'text-emerald-600 bg-emerald-50 rounded' : 'text-red-500'}">${result} ${isMatch ? '<i class="lucide-check w-3 h-3 inline"></i>' : ''}</td></tr>`;
-            });
-        }
-
-        // --- クラウド共有機能ロジック ---
-
         async function saveMemo() {
             if (!lastResultData) return;
             const btn = document.getElementById('save-btn');
-            const originalHtml = btn.innerHTML;
             btn.disabled = true;
-            btn.innerHTML = `<i class="lucide-loader-2 w-3 h-3 animate-spin"></i> 保存中...`;
+            log("Saving to cloud...");
 
             try {
                 const response = await fetch(KVDB_URL, {
                     method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(lastResultData)
                 });
+                log(`Response status: ${response.status}`);
                 if (response.ok) {
-                    alert("クラウドへ保存しました。翌日の職員が確認できます。");
+                    alert("クラウドへ保存しました。");
+                    log("Save success!");
                 } else {
+                    const errText = await response.text();
+                    log(`Error detail: ${errText}`);
                     throw new Error();
                 }
             } catch (e) {
-                alert("保存に失敗しました。通信状況を確認してください。");
+                log(`Fetch failed: ${e.message}`);
+                alert("保存に失敗しました。詳細は設定タブのDebugログを確認してください。");
             } finally {
                 btn.disabled = false;
-                btn.innerHTML = originalHtml;
             }
         }
 
@@ -379,9 +251,11 @@
             const content = document.getElementById('memo-content');
             content.innerHTML = `<div class="flex justify-center p-10"><i class="lucide-loader-2 w-8 h-8 animate-spin text-blue-500"></i></div>`;
             document.getElementById('memo-modal').classList.remove('hidden');
+            log("Loading from cloud...");
 
             try {
                 const response = await fetch(KVDB_URL);
+                log(`Load status: ${response.status}`);
                 if (!response.ok) throw new Error();
                 const data = await response.json();
 
@@ -389,40 +263,100 @@
                     <span class="text-[10px] text-blue-600 font-black block">保存日時</span>
                     <span class="text-sm font-black text-blue-900">${data.timestamp}</span>
                 </div>`;
-
                 html += `<div class="space-y-3">
                     <div>
                         <span class="text-xs font-black text-orange-600 mb-2 block flex items-center gap-1"><i class="lucide-wallet w-3 h-3"></i> 補充する枚数</span>
-                        <div class="grid grid-cols-2 gap-2">
-                            ${DENOMS.filter(d => data.borrow[d] > 0).map(d => `<div class="bg-white border rounded-lg p-2 flex justify-between"><span>${LABELS[d]}円</span><b>${data.borrow[d]}枚</b></div>`).join('') || '<p class="text-xs text-gray-400">なし</p>'}
-                        </div>
+                        <div class="grid grid-cols-2 gap-2">${DENOMS.filter(d => data.borrow[d] > 0).map(d => `<div class="bg-white border rounded-lg p-2 flex justify-between"><span>${LABELS[d]}円</span><b>${data.borrow[d]}枚</b></div>`).join('') || '<p class="text-xs text-gray-400">なし</p>'}</div>
                     </div>
                     <div class="pt-2 border-t border-dashed">
                         <span class="text-xs font-black text-emerald-600 mb-2 block flex items-center gap-1"><i class="lucide-undo-2 w-3 h-3"></i> 返却する枚数</span>
-                        <div class="grid grid-cols-2 gap-2">
-                            ${DENOMS.filter(d => data.return[d] > 0).map(d => `<div class="bg-white border rounded-lg p-2 flex justify-between"><span>${LABELS[d]}円</span><b>${data.return[d]}枚</b></div>`).join('') || '<p class="text-xs text-gray-400">なし</p>'}
-                        </div>
+                        <div class="grid grid-cols-2 gap-2">${DENOMS.filter(d => data.return[d] > 0).map(d => `<div class="bg-white border rounded-lg p-2 flex justify-between"><span>${LABELS[d]}円</span><b>${data.return[d]}枚</b></div>`).join('') || '<p class="text-xs text-gray-400">なし</p>'}</div>
                     </div>
-                    <div class="bg-gray-100 p-3 rounded-xl text-right">
-                        <span class="text-[10px] text-gray-500 font-bold block">金庫等との授受合計</span>
-                        <span class="text-lg font-black text-gray-800">¥${data.total.toLocaleString()}</span>
-                    </div>
+                    <div class="bg-gray-100 p-3 rounded-xl text-right"><span class="text-[10px] text-gray-500 font-bold block">授受合計</span><span class="text-lg font-black text-gray-800">¥${data.total.toLocaleString()}</span></div>
                 </div>`;
                 content.innerHTML = html;
+                log("Load success!");
             } catch (e) {
-                content.innerHTML = `<div class="text-center py-10">
-                    <i class="lucide-info w-10 h-10 text-gray-300 mx-auto mb-2"></i>
-                    <p class="text-gray-500 font-bold">保存されたデータがありません。</p>
-                </div>`;
+                log(`Load error: ${e.message}`);
+                content.innerHTML = `<div class="text-center py-10"><i class="lucide-info w-10 h-10 text-gray-300 mx-auto mb-2"></i><p class="text-gray-500 font-bold">データがありません。</p></div>`;
             }
         }
 
+        function calculate() {
+            document.getElementById('error-container').classList.add('hidden');
+            document.getElementById('steps-wrapper').classList.add('hidden');
+            const curTotal = DENOMS.reduce((s, d) => s + (d * currentCounts[d]), 0);
+            const setTotal = DENOMS.reduce((s, d) => s + (d * settings[d]), 0);
+            const sales = curTotal - setTotal;
+            document.getElementById('res-sales').innerText = `¥${sales.toLocaleString()}`;
+            document.getElementById('res-calc-formula').innerText = `現在高 ¥${curTotal.toLocaleString()} － 設定額 ¥${setTotal.toLocaleString()}`;
+            if (sales < 0) { showError("合計が設定額を下回っています。"); return; }
+
+            let baseBorrow = {}; let baseOwed = 0; let initialTray = {};
+            DENOMS.forEach(d => {
+                const diff = currentCounts[d] - settings[d];
+                if (diff < 0) { baseBorrow[d] = Math.abs(diff); baseOwed += Math.abs(diff) * d; initialTray[d] = 0; } 
+                else { baseBorrow[d] = 0; initialTray[d] = diff; }
+            });
+
+            let bestExtra = null; let minExtraVal = Infinity;
+            for(let e10k = 0; e10k <= 3; e10k++) {
+                for(let e5k = 0; e5k <= 2; e5k++) {
+                    for(let e1k = 0; e1k <= 15; e1k++) {
+                        let extraVal = e10k*10000 + e5k*5000 + e1k*1000;
+                        if(extraVal >= minExtraVal) continue;
+                        let simOwed = baseOwed + extraVal;
+                        let simTray = {...initialTray}; simTray[10000] += e10k; simTray[5000] += e5k; simTray[1000] += e1k;
+                        let rem = simOwed; let returnPlan = {};
+                        DENOMS.forEach(d => { let use = Math.min(simTray[d], Math.floor(rem / d)); if(use > 0) { returnPlan[d] = use; rem -= use * d; } });
+                        if(rem === 0) { bestExtra = { 10000: e10k, 5000: e5k, 1000: e1k, returnPlan: returnPlan, extraVal: extraVal }; minExtraVal = extraVal; }
+                    }
+                }
+            }
+
+            if (!bestExtra) { showError("返却額をピッタリ作れません。"); return; }
+
+            let finalBorrow = {...baseBorrow};
+            finalBorrow[10000] += bestExtra[10000]; finalBorrow[5000] += bestExtra[5000]; finalBorrow[1000] += bestExtra[1000];
+            let finalTray = {...initialTray};
+            finalTray[10000] += bestExtra[10000]; finalTray[5000] += bestExtra[5000]; finalTray[1000] += bestExtra[1000];
+            
+            lastResultData = { timestamp: new Date().toLocaleString('ja-JP'), borrow: finalBorrow, return: bestExtra.returnPlan, total: baseOwed + bestExtra.extraVal };
+            document.getElementById('steps-wrapper').classList.remove('hidden');
+            renderSteps(finalBorrow, bestExtra.returnPlan, lastResultData.total);
+            renderTable(finalBorrow, finalTray);
+            switchTab('result');
+        }
+
+        function showError(msg) { document.getElementById('error-container').classList.remove('hidden'); document.getElementById('error-message').innerHTML = msg; switchTab('result'); }
         function closeModal() { document.getElementById('memo-modal').classList.add('hidden'); }
 
-        init();
+        function renderSteps(borrows, returns, totalOwed) {
+            const container = document.getElementById('steps-container');
+            container.innerHTML = '';
+            if (totalOwed === 0) { container.innerHTML = `<div class="p-5 text-center bg-green-50 rounded-xl border border-green-200">補充は不要です</div>`; return; }
+            const bItems = DENOMS.filter(d => borrows[d] > 0).map(d => `<div class="flex justify-between items-center bg-white px-3 py-1.5 rounded border border-orange-100 mb-1"><span>${LABELS[d]}円</span><b>${borrows[d]}枚</b></div>`).join('');
+            container.innerHTML += stepCard(1, "補充", "border-orange-500 bg-orange-50", "text-orange-600", "lucide-wallet", `${bItems}<div class="text-right text-xs font-black mt-2">合計: ¥${totalOwed.toLocaleString()}</div>`);
+            container.innerHTML += stepCard(2, "入金＆回収", "border-[#005bac] bg-blue-50", "text-[#005bac]", "lucide-arrow-down-up", "準備した現金を入れ、「残置回収」を実行します。");
+            const rItems = DENOMS.filter(d => returns[d] > 0).map(d => `<div class="flex justify-between items-center bg-white px-3 py-1.5 rounded border border-emerald-100 mb-1"><span>${LABELS[d]}円</span><b>${returns[d]}枚</b></div>`).join('');
+            container.innerHTML += stepCard(3, "返却", "border-emerald-500 bg-emerald-50", "text-emerald-600", "lucide-undo-2", `${rItems}<div class="text-right text-xs font-black mt-2">合計: ¥${totalOwed.toLocaleString()}</div>`);
+        }
 
+        function stepCard(num, title, colors, iconColor, icon, content) {
+            return `<div class="border-l-4 rounded-r-xl p-3 shadow-sm ${colors}"><div class="flex items-center gap-2 mb-2"><i class="${icon} ${iconColor} w-4 h-4"></i><div class="text-sm font-black">${num}. ${title}</div></div><div class="ml-6 text-xs font-bold">${content}</div></div>`;
+        }
+
+        function renderTable(borrows, trayExpelled) {
+            const tbody = document.getElementById('flow-tbody'); tbody.innerHTML = '';
+            DENOMS.forEach((d, i) => {
+                const b = borrows[d]; const t = trayExpelled[d]; const result = currentCounts[d] + b - t; const match = result === settings[d];
+                tbody.innerHTML += `<tr class="border-b ${i%2===0?'bg-white':'bg-gray-50'}"><td class="text-left py-2 px-2">${LABELS[d]}</td><td>${currentCounts[d]}</td><td class="text-orange-600">${b>0?'+'+b:0}</td><td class="text-blue-600">${t>0?'-'+t:0}</td><td class="${match?'text-emerald-600':'text-red-500'}">${result}</td></tr>`;
+            });
+        }
+
+        init();
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js').then(() => console.log('Service Worker Registered'));
+            navigator.serviceWorker.register('sw.js').then(() => log('SW Registered')).catch(e => log(`SW Fail: ${e.message}`));
         }
     </script>
 </body>
