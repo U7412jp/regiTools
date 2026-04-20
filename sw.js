@@ -1,19 +1,16 @@
-// sw.js (Service Worker)
-
-// インストール時に実行されるイベント
+// sw.js (Service Worker) - 修正版
 self.addEventListener('install', (event) => {
   console.log('Service Worker installed.');
-  // インストール後、すぐにアクティブにする
   self.skipWaiting();
 });
 
-// アクティブになった時に実行されるイベント
 self.addEventListener('activate', (event) => {
   console.log('Service Worker activated.');
 });
 
-// ネットワークリクエストが発生した時に実行されるイベント
-// これを書かないとPWAとして認識されない場合があります
-self.fetch = (event) => {
+// fetchイベントの正しい書き方
+self.addEventListener('fetch', (event) => {
+  // PWAの条件を満たすために最低限必要
   event.respondWith(fetch(event.request));
-};
+});
+
